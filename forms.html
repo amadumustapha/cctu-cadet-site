@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCTU ARMY CADET CORPS - Registration Form</title>
+<link rel="icon" type="image/png" href="logo.jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="form.css">
+<!-- Paystack Script -->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<!-- Config File (Public Keys Only) -->
+<script src="config.js"></script>
+</head>
+<body>
+<!-- Navigation -->
+<header>
+<div class="logo-container">
+<img src="logo.jpg" alt="CCTU Logo" class="coat-of-arms">
+<span class="logo-text">CCTU ARMY CADET CORPS</span>
+</div>
+<nav>
+<ul class="nav-links">
+<li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+<li>
+<button id="theme-toggle-form" class="btn-theme-toggle">🌙 Dark Mode</button>
+</li>
+</ul>
+</nav>
+</header>
+
+<!-- Form Header -->
+<section class="form-header">
+<h1><i class="fas fa-file-signature"></i> Registration Form</h1>
+<p>Cape Coast Technical University Army Cadet Corps</p>
+<p style="font-size: 1rem; color: #ffcc00; font-weight: 500;">
+<i class="fas fa-phone"></i> Tell: 0554653961 / 0591059130 / 0558853174
+</p>
+<div class="form-status">
+<span><i class="fas fa-check-circle"></i> Applications Open</span>
+<span><i class="fas fa-calendar-alt"></i> Deadline: 31st December 2026</span>
+</div>
+</section>
+
+<!-- Main Form -->
+<section class="form-container">
+
+<!-- PAYMENT SECTION - OPEN WITH PAYSTACK -->
+<div id="payment-section" class="payment-section">
+<div class="payment-card">
+<div class="payment-header">
+<i class="fas fa-mobile-alt"></i>
+<h2>Pay Registration Fee</h2>
+<p>Complete payment to access the registration form</p>
+</div>
+
+<div class="payment-details">
+<div class="payment-info">
+<div class="info-row">
+<span class="label">📱 Amount:</span>
+<span class="value">GH₵ 20.00</span>
+</div>
+<div class="info-row">
+<span class="label">🏦 Payment Method:</span>
+<span class="value">Card / Mobile Money</span>
+</div>
+<div class="info-row">
+<span class="label">💳 Secure:</span>
+<span class="value" style="color: #2ecc71; font-weight: 700;">Paystack Secure</span>
+</div>
+</div>
+
+<div class="payment-instructions">
+<h4><i class="fas fa-info-circle"></i> How to Pay:</h4>
+<ol>
+<li>Enter your details below</li>
+<li>Click "Pay Now"</li>
+<li>You'll be redirected to Paystack</li>
+<li>Pay with Card or Mobile Money</li>
+<li>After successful payment, the form will unlock</li>
+</ol>
+</div>
+
+<div class="payment-verification">
+<h4><i class="fas fa-credit-card"></i> Pay with Paystack</h4>
+<p>Enter your details to make payment and access the registration form.</p>
+
+<div class="form-row">
+<div class="form-group">
+<label for="payment-name">Your Full Name <span class="required">*</span></label>
+<input type="text" id="payment-name" name="Payment Name" placeholder="Enter your full name" required>
+</div>
+<div class="form-group">
+<label for="payment-email">Email Address <span class="required">*</span></label>
+<input type="email" id="payment-email" name="Payment Email" placeholder="youremail@example.com" required>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="payment-phone">Phone Number <span class="required">*</span></label>
+<input type="tel" id="payment-phone" name="Payment Phone" placeholder="024XXXXXXX" required>
+</div>
+<div class="form-group">
+<label for="payment-amount">Amount</label>
+<input type="text" id="payment-amount" value="GH₵ 20.00" disabled style="background: rgba(255, 204, 0, 0.1); color: #ffcc00; font-weight: 700; font-size: 1.2rem;">
+</div>
+</div>
+
+<!-- CSRF Token Hidden Field -->
+<input type="hidden" id="csrf-token" name="csrf_token" value="">
+
+<button type="button" id="paystack-pay" class="btn-verify">
+<i class="fas fa-credit-card"></i> Pay GH₵ 20.00 Now
+</button>
+
+<div id="payment-status" class="payment-status-message" style="display: none;"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- THE ACTUAL REGISTRATION FORM - Hidden until payment is verified -->
+<div id="registration-form-section" style="display: none;">
+
+<!-- ======================================== -->
+<!-- ⚠️ IMPORTANT: This form has the onsubmit attribute! -->
+<!-- ======================================== -->
+<form id="enlistment-form" onsubmit="return submitForm(event)">
+
+<!-- Personal Information -->
+<div class="form-section">
+<h2><i class="fas fa-user-circle"></i> Personal Information</h2>
+<div class="form-row">
+<div class="form-group">
+<label for="full-name">Name <span class="required">*</span></label>
+<input type="text" id="full-name" name="Full Name" placeholder="Enter your full name" required>
+</div>
+<div class="form-group">
+<label for="age">Age <span class="required">*</span></label>
+<input type="number" id="age" name="Age" placeholder="e.g., 20" min="16" max="40" required>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="email">Email Address <span class="required">*</span></label>
+<input type="email" id="email" name="Email" placeholder="youremail@example.com" required>
+</div>
+<div class="form-group">
+<label for="phone">Telephone <span class="required">*</span></label>
+<input type="tel" id="phone" name="Telephone" placeholder="0554653961" required>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="height">Height (cm) <span class="required">*</span></label>
+<input type="text" id="height" name="Height" placeholder="e.g., 175" required>
+</div>
+<div class="form-group">
+<label for="blood-group">Blood Group <span class="required">*</span></label>
+<select id="blood-group" name="Blood Group" required>
+<option value="">Select Blood Group</option>
+<option value="A+">A+</option>
+<option value="A-">A-</option>
+<option value="B+">B+</option>
+<option value="B-">B-</option>
+<option value="AB+">AB+</option>
+<option value="AB-">AB-</option>
+<option value="O+">O+</option>
+<option value="O-">O-</option>
+</select>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="index-number">Student Index Number <span class="required">*</span></label>
+<input type="text" id="index-number" name="Index Number" placeholder="e.g., CCTU/001/2024" required>
+</div>
+<div class="form-group">
+<!-- Empty for spacing -->
+</div>
+</div>
+</div>
+
+<!-- Academic Information -->
+<div class="form-section">
+<h2><i class="fas fa-graduation-cap"></i> Academic Information</h2>
+
+<div class="form-row">
+<div class="form-group full-width">
+<label for="programme-category">Programme Category <span class="required">*</span></label>
+<select id="programme-category" name="Programme Category" required onchange="updateProgrammes()">
+<option value="">Select Programme Category</option>
+<option value="btech">Bachelor of Technology (BTech) - 4 Years</option>
+<option value="hnd">Higher National Diploma (HND) - 3 Years</option>
+<option value="diploma">Diploma - 2 Years</option>
+</select>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group full-width">
+<label for="program">Programme <span class="required">*</span></label>
+<select id="program" name="Programme" required>
+<option value="">Please select a programme category first</option>
+</select>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="level">Level <span class="required">*</span></label>
+<select id="level" name="Level" required>
+<option value="">Select Level</option>
+<option value="100">100 Level</option>
+<option value="200">200 Level</option>
+<option value="300">300 Level</option>
+<option value="400">400 Level</option>
+<option value="500">500 Level</option>
+</select>
+</div>
+<div class="form-group">
+<label for="hall">Hall of Affiliation <span class="required">*</span></label>
+<input type="text" id="hall" name="Hall of Affiliation" placeholder="e.g., University Hall" required>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="room">Room Number</label>
+<input type="text" id="room" name="Room Number" placeholder="e.g., A-123 (Optional)">
+<small style="color: #888; font-size: 0.8rem;">Optional field</small>
+</div>
+<div class="form-group">
+<!-- Empty for spacing -->
+</div>
+</div>
+</div>
+
+<!-- Additional Information -->
+<div class="form-section">
+<h2><i class="fas fa-info-circle"></i> Additional Information</h2>
+<div class="form-row">
+<div class="form-group full-width">
+<label for="reason">Reason for Joining the Cadet <span class="required">*</span></label>
+<textarea id="reason" name="Reason for Joining" rows="4" placeholder="Tell us why you want to join the CCTU Army Cadet Corps..." required></textarea>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group full-width">
+<label for="health">Health Problem (If Any)</label>
+<textarea id="health" name="Health Problem" rows="2" placeholder="Describe any health problems or conditions..."></textarea>
+</div>
+</div>
+</div>
+
+<!-- Declaration -->
+<div class="form-section">
+<h2><i class="fas fa-check-circle"></i> Declaration</h2>
+<div class="form-row">
+<div class="form-group full-width">
+<label class="checkbox-label">
+<input type="checkbox" id="declaration" name="Declaration" value="Yes" required>
+I hereby declare that the information provided in this form is true and accurate to the best of my knowledge, and I pledge to adhere to the rules, regulations, and any command given by the superior.
+<span class="required">*</span>
+</label>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group full-width">
+<label class="checkbox-label">
+<input type="checkbox" id="oath" name="Oath Accepted" value="Yes" required>
+I pledge to uphold the values of Loyalty, Discipline, Protect & Defend as a member of the CCTU Army Cadet Corps.
+<span class="required">*</span>
+</label>
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group">
+<label for="date">Date <span class="required">*</span></label>
+<input type="date" id="date" name="Date" required>
+</div>
+<div class="form-group">
+<label for="signature">Signature (Type your full name) <span class="required">*</span></label>
+<input type="text" id="signature" name="Signature" placeholder="Type your full name as signature" required>
+</div>
+</div>
+</div>
+
+<!-- Submit Button -->
+<div class="form-actions">
+<button type="reset" class="btn-reset">
+<i class="fas fa-undo"></i> Clear Form
+</button>
+<button type="submit" class="btn-submit">
+<i class="fas fa-paper-plane"></i> Submit Application
+</button>
+</div>
+
+<!-- Form Status Message -->
+<div id="form-status" class="form-status-message" style="display: none;"></div>
+
+</form>
+<!-- END OF FORM -->
+</div>
+
+</section>
+
+<!-- Footer -->
+<footer>
+<p>&copy; 2026 Cape Coast Technical University Army Cadet Corps. Republic of Ghana.</p>
+<div class="footer-contact">
+<a href="mailto:hackermed.hack@proton.me" class="email-link">
+<i class="fas fa-envelope"></i> Email us: hackermed.hack@proton.me
+</a>
+</div>
+<div class="social-links">
+<span>Follow us on:</span>
+<a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+<a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+<a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+<a href="https://twitter.com" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+<a href="https://wa.me/233XXXXXXXXX" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
+</footer>
+
+<script src="form.js"></script>
+</body>
+</html>

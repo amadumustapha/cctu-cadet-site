@@ -1,0 +1,573 @@
+/* Ranks Page Styles */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #ffffff;
+    --card-bg: #161b22;
+    --border-color: #30363d;
+    --header-bg: #002b49;
+    --footer-bg: #111111;
+    --rank-card-bg: #1a1a2e;
+}
+
+[data-theme="dark"] {
+    --bg-color: #0d1117;
+    --text-color: #ffffff;
+    --card-bg: #161b22;
+    --border-color: #30363d;
+    --header-bg: #0d1117;
+    --footer-bg: #0d1117;
+    --rank-card-bg: #161b22;
+}
+
+[data-theme="light"] {
+    --bg-color: #f4f6f8;
+    --text-color: #111111;
+    --card-bg: #ffffff;
+    --border-color: #dddddd;
+    --header-bg: #002b49;
+    --footer-bg: #111111;
+    --rank-card-bg: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 3%;
+    background-color: var(--header-bg);
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 4px solid #ffcc00;
+    transition: background-color 0.3s ease;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.coat-of-arms {
+    height: 40px;
+    width: auto;
+}
+
+.logo-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Close Ranks Button */
+.btn-close-ranks {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ff4444, #cc0000);
+    color: #ffffff !important;
+    padding: 10px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 2px solid #ff4444;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.btn-close-ranks:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(255, 0, 0, 0.5);
+    background: linear-gradient(135deg, #ff6666, #dd0000);
+    border-color: #ff6666;
+}
+
+.btn-close-ranks i {
+    font-size: 1.2rem;
+}
+
+/* Theme Toggle Button */
+.btn-theme-toggle {
+    background: transparent;
+    border: 2px solid #ffcc00;
+    color: #ffcc00;
+    padding: 10px 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.btn-theme-toggle:hover {
+    background: #ffcc00;
+    color: #002b49;
+    transform: scale(1.05);
+}
+
+/* Ranks Header */
+.ranks-header {
+    text-align: center;
+    padding: 50px 20px 40px;
+    background: linear-gradient(135deg, #002b49, #006837);
+    border-bottom: 4px solid #ffcc00;
+    transition: background 0.3s ease;
+}
+
+[data-theme="dark"] .ranks-header {
+    background: linear-gradient(135deg, #0d1117, #161b22);
+}
+
+.ranks-header h1 {
+    font-size: 3rem;
+    color: #ffcc00;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.ranks-header p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.rank-count {
+    display: inline-block;
+    background: rgba(255, 204, 0, 0.2);
+    border: 2px solid #ffcc00;
+    padding: 10px 30px;
+    border-radius: 50px;
+    color: #ffcc00;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.rank-count i {
+    margin-right: 8px;
+}
+
+/* Full Ranks Grid */
+.ranks-full-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 40px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Individual Rank Cards - Matching Main Page Style */
+.rank-card {
+    background: var(--rank-card-bg);
+    border: 1px solid var(--border-color);
+    border-top: 5px solid #006837;
+    padding: 25px 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.rank-card:hover {
+    transform: translateY(-8px);
+    border-top-color: #002b49 !important;
+    box-shadow: 0 8px 30px rgba(0, 43, 73, 0.3);
+}
+
+.rank-card:hover .rank-title {
+    color: #84926a !important;
+}
+
+/* Rank Insignia */
+.rank-insignia {
+    background-color: #111111;
+    color: #ffcc00;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border: 2px solid #ffcc00;
+}
+
+.insignia-symbol {
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+}
+
+/* Rank Title */
+.rank-title {
+    font-size: 0.9rem;
+    color: #ffcc00;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.rank-card h3 {
+    font-size: 1.3rem;
+    color: #ffcc00;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.rank-card p {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Rank Badge */
+.rank-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #002b49, #006837);
+    color: #ffcc00;
+    padding: 5px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 204, 0, 0.3);
+}
+
+/* Special styling for different rank types */
+.rank-card:nth-child(1) .rank-insignia { border-color: #ff6b6b; }
+.rank-card:nth-child(2) .rank-insignia { border-color: #ff9f43; }
+.rank-card:nth-child(3) .rank-insignia { border-color: #feca57; }
+.rank-card:nth-child(4) .rank-insignia { border-color: #48dbfb; }
+.rank-card:nth-child(5) .rank-insignia { border-color: #1dd1a1; }
+.rank-card:nth-child(6) .rank-insignia { border-color: #54a0ff; }
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--footer-bg);
+    color: #ffffff;
+    border-top: 3px solid #ffcc00;
+    transition: background-color 0.3s ease;
+}
+
+footer p {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.footer-contact {
+    margin-bottom: 15px;
+}
+
+.email-link {
+    color: #ffcc00;
+    font-size: 1.15rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.email-link i {
+    margin-right: 6px;
+}
+
+.email-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.social-links span {
+    font-size: 1.15rem;
+    color: #dddddd;
+    font-weight: 500;
+}
+
+.social-links a {
+    color: #ffffff;
+    font-size: 1.8rem;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.2) translateY(-3px);
+}
+
+.social-links a[aria-label="Facebook"]:hover {
+    color: #1877f2;
+}
+
+.social-links a[aria-label="Instagram"]:hover {
+    color: #e4405f;
+}
+
+.social-links a[aria-label="TikTok"]:hover {
+    color: #000000;
+}
+
+.social-links a[aria-label="X (Twitter)"]:hover {
+    color: #1da1f2;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 992px) {
+    .ranks-full-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 30px 4%;
+    }
+
+    .ranks-header h1 {
+        font-size: 2.4rem;
+    }
+
+    .btn-close-ranks {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+    }
+
+    .btn-theme-toggle {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .ranks-full-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 18px;
+        padding: 20px 3%;
+    }
+
+    .ranks-header h1 {
+        font-size: 2rem;
+    }
+
+    .ranks-header p {
+        font-size: 1rem;
+    }
+
+    .rank-count {
+        font-size: 0.95rem;
+        padding: 8px 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .ranks-full-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px 2%;
+    }
+
+    .ranks-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .ranks-header p {
+        font-size: 0.85rem;
+    }
+
+    .rank-count {
+        font-size: 0.8rem;
+        padding: 6px 16px;
+    }
+
+    .rank-card {
+        padding: 20px 15px;
+    }
+
+    .rank-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .btn-close-ranks {
+        padding: 6px 14px;
+        font-size: 0.75rem;
+        gap: 6px;
+    }
+
+    .btn-close-ranks i {
+        font-size: 0.9rem;
+    }
+
+    .btn-theme-toggle {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+
+    .nav-links {
+        gap: 8px;
+    }
+}
+
+
+/* ========================================
+   FOOTER SOCIAL LINKS - COMPLETE
+   ======================================== */
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #111;
+    color: #ffffff;
+    border-top: 3px solid #ffcc00;
+}
+
+footer p {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.footer-contact {
+    margin-bottom: 15px;
+}
+
+.email-link {
+    color: #ffcc00;
+    font-size: 1.15rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.email-link i {
+    margin-right: 6px;
+}
+
+.email-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social-links span {
+    font-size: 1.15rem;
+    color: #dddddd;
+    font-weight: 500;
+}
+
+.social-links a {
+    color: #ffffff;
+    font-size: 1.8rem;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    transform: scale(1.2) translateY(-3px);
+}
+
+/* Individual Social Media Colors on Hover */
+.social-links a[aria-label="Facebook"]:hover {
+    color: #1877f2;
+}
+
+.social-links a[aria-label="Instagram"]:hover {
+    color: #e4405f;
+}
+
+.social-links a[aria-label="TikTok"]:hover {
+    color: #000000;
+}
+
+.social-links a[aria-label="X (Twitter)"]:hover {
+    color: #1da1f2;
+}
+
+.social-links a[aria-label="WhatsApp"]:hover {
+    color: #25D366;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .social-links {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .social-links a {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .social-links {
+        gap: 12px;
+    }
+    
+    .social-links a {
+        font-size: 1.3rem;
+    }
+    
+    .social-links span {
+        font-size: 0.9rem;
+    }
+}
